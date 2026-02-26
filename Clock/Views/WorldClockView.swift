@@ -12,9 +12,19 @@ struct WorldClockView: View {
         NavigationStack{
             VStack{
                 //Ottawa
-                ExtractedView()
-                //Vancouber
-                ExtractedView()
+                ExtractedView(
+                    timeZoneOffset: "+0",
+                    city: "Ottawa",
+                    time: "6:35",
+                    amOrPm: "AM"
+                )
+                //Vancouver
+                ExtractedView(
+                    timeZoneOffset: "-3",
+                    city: "Vancouver",
+                    time: "3:35",
+                    amOrPm: "AM"
+                )
             }
             .navigationTitle("World Clock")
             .toolbar {
@@ -39,30 +49,34 @@ struct WorldClockView: View {
     }
 }
 
+
+#Preview {
+    LandingView()
+}
+
 struct ExtractedView: View {
     
+    //Mark: Stored properties
+    let timeZoneOffset: String
+    let city: String
+    let time: String
+    let amOrPm: String
+    
+    //Mark:Computed property(displays user interface using values received into the stored properties)
     var body: some View {
-        HStack{
-            //left side
-            VStack{
-                Text ("Today, +0HRS")
-                Text ("Ottawa")
-                    .font(.system(.largeTitle, design: .default, weight: .thin))
+        HStack {
+            VStack {
+                Text("Today, +0HRS")
+                Text("Ottawa")
+                    .font (.system(.largeTitle, design: .default, weight: .thin))
             }
-            
             Spacer()
-            //Right side
+            //right side
             Text("6:35")
                 .font(.system(size:64.0, weight: .thin, design: .default))
             Text("AM")
                 .font (.system(.largeTitle, design: .default, weight: .thin))
         }
-        
     }
-        
-}
-
-
-#Preview {
-    LandingView()
+    
 }
